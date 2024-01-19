@@ -31,7 +31,7 @@ router
       };
 
       users.push(user);
-      res.json(users[users.length - 1]);
+      res.json('Success! use is created: ', users[users.length - 1]);
     } else next(error(400, 'Insufficient Data'));
   });
 

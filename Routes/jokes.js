@@ -22,12 +22,12 @@ router
       const joke = {
         id: jokes[jokes.length - 1].id + 1,
         userId: req.body.userId,
-        title: req.body.title,
-        content: req.body.content,
+        tag: req.body.tag,
+        joke: req.body.joke,
       };
 
       jokes.push(joke);
-      res.json(jokes[jokes.length - 1]);
+      res.json('Success! a joke post is created:',jokes[jokes.length - 1]);
     } else next(error(400, 'Insufficient Data'));
   });
 
@@ -66,14 +66,14 @@ router
     else next();
   })
   .delete((req, res, next) => {
-    const post = jokes.find((p, i) => {
+    const joke = jokes.find((p, i) => {
       if (p.id == req.params.id) {
         jokes.splice(i, 1);
         return true;
       }
     });
 
-    if (post) res.json(post);
+    if (joke) res.json("Success! A joke has been deleted:",joke);
     else next();
   });
 
