@@ -4,15 +4,19 @@ const PORT = 3000;
 //_--_---__----____-----
 
 //Routes:
-const jokes = require('./Routes/jokes');
-const users = require('./Routes/users')
+const jokes = require('./routes/jokes');
+const users = require('./routes/users');
+
+//error handler
+const error = require('./utilities/error');
 
 //view engine:
-app.set('view engine','ejs')
-//static styles
-app.use(express.static('./styles'))
+app.set('view engine','ejs');
 
-// Body-parser middleware
+//static styles
+app.use(express.static('./styles'));
+
+//Parsing middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 
@@ -29,7 +33,7 @@ app.use((req, res, next) => {
     next();
   });
 
-// redirect:Use our Routes
+// Redirecting to routes handlers
 app.use('/api/users', users);
 app.use('/api/jokes', jokes);
 
@@ -70,6 +74,11 @@ app.get('/api', (req, res) => {
 app.use((req , res , next)=>{
     res.status(404).render('404')
 })
+//any other error
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({ error: err.message });
+});
 
 //_--_---__----____-----
 app.listen(PORT, ()=>{

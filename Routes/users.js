@@ -66,7 +66,7 @@ router
       }
     });
 
-    if (user) res.json(user);
+    if (user) res.send('User is successfully updated!',user);
     else next();
   })
   .delete((req, res, next) => {
@@ -77,7 +77,7 @@ router
       }
     });
 
-    if (user) res.json(user);
+    if (user) res.send('User has successfully deleted! ',user);
     else next();
   });
 
