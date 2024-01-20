@@ -40,6 +40,7 @@ app.get('/' , (req,res) => {
   res.render('index')
 });
 
+
 // Adding some HATEOAS links.
 app.get('/api', (req, res) => {
   res.json({
@@ -67,6 +68,8 @@ app.get('/api', (req, res) => {
     ],
   });
 });
+
+
 
 // Custom 404 middleware.
 app.use((req , res , next)=>{

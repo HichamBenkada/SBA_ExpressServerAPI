@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 const users = require('../data/users');
 const error = require('../utilities/error');
 
@@ -79,10 +80,6 @@ router
 
     if (user) res.send('User has successfully deleted! ',user);
     else next();
-  });
-
-  router.get('/login', (res,req)=>{
-    res.render('login')
   });
 
 module.exports = router;
