@@ -4,6 +4,7 @@ const PORT = 3000;
 //Routes:
 const jokes = require('./routes/jokes');
 const users = require('./routes/users');
+const comments = require('./routes/comments');
 //_--_---__----____-----
 //Setting EJS as view engine:
 app.set('view engine', 'ejs');
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 // Redirecting to routes handlers
 app.use('/api/users', users);
 app.use('/api/jokes', jokes);
+app.use('/api/comments', comments);
 
 //JokesAPI Server Base URL
 app.get('/' , (req,res) => {
@@ -63,6 +65,16 @@ app.get('/api', (req, res) => {
       {
         href: 'api/jokes',
         rel: 'jokes',
+        type: 'POST',
+      },
+      {
+        href: 'api/comments',
+        rel: 'comments',
+        type: 'GET',
+      },
+      {
+        href: 'api/comments',
+        rel: 'comments',
         type: 'POST',
       },
     ],

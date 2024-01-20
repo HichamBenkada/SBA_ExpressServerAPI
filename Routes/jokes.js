@@ -9,13 +9,20 @@ router
   .get((req, res) => {
     const links = [
       {
+        //provide a user id:
+        href: "jokes?userId=<:id>",
+        rel: ":id",
+        type: "GET",
+      },{
         href: "jokes/:id",
         rel: ":id",
         type: "GET",
       },
     ];
-
-    res.json({ jokes, links });
+    if(req.query){
+      const userjokes = jokes.filter((j)=>j.userId===Number(req.query.userId));
+      res.json({ userjokes , links })
+    }else res.json({ jokes, links });
   })
   .post((req, res, next) => {
     if (req.body.userId && req.body.tag && req.body.joke) {

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const users = require("../data/users");
+const jokes = require("../data/jokes");
 const error = require("../utilities/error");
 
 router
@@ -81,28 +82,37 @@ router
     else next();
   });
 
-router.get("/login", (req, res) => {
-  res.send(`<style>
-  body{
-    display:flex;
-    justify-content:center;
-    algne-items:center;
-  }
-  </style>
-  <div style="margin:auto;
-  padding: 10px;
-  width:50%;
-  background-color:rgb(0 0 255 / 10%);
-  border-radius: 10px;">New User: 
-  <form action='/api/users' method="POST" style="display: flex; flex-direction:column; justify-content:space-around">
-  </br>
-   <input type="text" name="name" placeholder="Enter your name" required/></br> 
-   <input type="text" name="username" placeholder="Enter your username" required/></br> 
-   <input type="email" name="email" placeholder="Enter your email"required/></br> 
+router
+  .get("/login", (req, res) => {
+    res.send(`<style>
+    body{
+      display:flex;
+      justify-content:center;
+      algne-items:center;
+    }
+    </style>
+    <div style="margin:auto;
+    padding: 10px;
+    width:50%;
+    background-color:rgb(0 0 255 / 10%);
+    border-radius: 10px;">New User: 
+    <form action='/api/users' method="POST" style="display: flex; flex-direction:column; justify-content:space-around">
+    </br>
+    <input type="text" name="name" placeholder="Enter your name" required/></br> 
+    <input type="text" name="username" placeholder="Enter your username" required/></br> 
+    <input type="email" name="email" placeholder="Enter your email"required/></br> 
 
-    <br />
-    <input type="submit" />
-  </form>
-</div>`);
-});
+      <br />
+      <input type="submit" />
+    </form>
+  </div>`);
+  })
+  .get('/:id/jokes',(req,res, next)=>{
+    const user = users.find((u)=>u.id === Number(req.params.id))
+    if(user){
+      const userJokes = jokes.filter((p)=>p.userId === Number(req.params.id))
+      res.json(userJokes);
+    }else res.status(404).send('user not found')
+  })
+
 module.exports = router;

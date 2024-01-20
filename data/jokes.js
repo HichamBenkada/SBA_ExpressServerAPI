@@ -134,7 +134,7 @@ const jokes = [
       userId: 4,
       tag: "Bug Detective",
       joke:
-      `A programmer walks into a crime scene where there's a broken API. They start debugging, saying, "I'll get to the bottom of this code."`,
+      `A programmer walks into a crime scene where there's a broken API. Then start debugging, saying, "I'll get to the bottom of this code."`,
     } ,
   ];
   
