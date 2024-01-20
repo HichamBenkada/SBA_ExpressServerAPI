@@ -1,18 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-
-const users = require('../data/users');
-const error = require('../utilities/error');
+const users = require("../data/users");
+const error = require("../utilities/error");
 
 router
-  .route('/')
+  .route("/")
   .get((req, res) => {
     const links = [
       {
-        href: 'users/:id',
-        rel: ':id',
-        type: 'GET',
+        href: "users/:id",
+        rel: ":id",
+        type: "GET",
       },
     ];
 
@@ -21,7 +20,7 @@ router
   .post((req, res, next) => {
     if (req.body.name && req.body.username && req.body.email) {
       if (users.find((u) => u.username == req.body.username)) {
-        next(error(409, 'Username Already Taken'));
+        next(error(409, "Username Already Taken"));
       }
 
       const user = {
@@ -32,25 +31,25 @@ router
       };
 
       users.push(user);
-      res.send('Success!',user);
-    } else next(error(400, 'Insufficient Data'));
+      res.json(user);
+    } else next(error(400, "Insufficient Data"));
   });
 
 router
-  .route('/:id')
+  .route("/:id")
   .get((req, res, next) => {
     const user = users.find((u) => u.id == req.params.id);
 
     const links = [
       {
         href: `/${req.params.id}`,
-        rel: '',
-        type: 'PATCH',
+        rel: "",
+        type: "PATCH",
       },
       {
         href: `/${req.params.id}`,
-        rel: '',
-        type: 'DELETE',
+        rel: "",
+        type: "DELETE",
       },
     ];
 
@@ -67,7 +66,7 @@ router
       }
     });
 
-    if (user) res.send('User is successfully updated!',user);
+    if (user) res.send("User is successfully updated!", user);
     else next();
   })
   .delete((req, res, next) => {
@@ -78,8 +77,32 @@ router
       }
     });
 
-    if (user) res.send('User has successfully deleted! ',user);
+    if (user) res.send("User has successfully deleted! ", user);
     else next();
   });
 
+router.get("/login", (req, res) => {
+  res.send(`<style>
+  body{
+    display:flex;
+    justify-content:center;
+    algne-items:center;
+  }
+  </style>
+  <div style="margin:auto;
+  padding: 10px;
+  width:50%;
+  background-color:rgb(0 0 255 / 10%);
+  border-radius: 10px;">New User: 
+  <form action='/api/users' method="POST" style="display: flex; flex-direction:column; justify-content:space-around">
+  </br>
+   <input type="text" name="name" placeholder="Enter your name" required/></br> 
+   <input type="text" name="username" placeholder="Enter your username" required/></br> 
+   <input type="email" name="email" placeholder="Enter your email"required/></br> 
+
+    <br />
+    <input type="submit" />
+  </form>
+</div>`);
+});
 module.exports = router;
