@@ -10,7 +10,7 @@ For this project, I developed a _RESTful API_ server application using Node and 
 
 Welcome to Joke Api: Feel free to explore all routes
 
- Home page: 
+ Home page:  
         <code>GET <a href="http://localhost:3000">/</a></code></br>
         Access API route: 
         <code>GET <a href="http://localhost:3000/api" target="_blank">/api</a></code></br>
@@ -25,8 +25,10 @@ Welcome to Joke Api: Feel free to explore all routes
         PATCH /api/users/:id</br>
         Delete user by id: 
         DELETE /api/users/:id</br>
-        <hr>
-        Explore (Read) Jokes: 
+        Retrieves all jokes by a user with the specified id: 
+        <code>GET <a href="http://localhost:3000/api/users/:id/jokes" target="_blank">/api/users/:id/jokes</a></code> <br>
+
+Explore (Read) Jokes: 
         <code>GET <a href="http://localhost:3000/api/jokes" target="_blank">/api/jokes</a></code></br>
         Create a joke: 
         POST /api/jokes</br>
@@ -37,5 +39,15 @@ Welcome to Joke Api: Feel free to explore all routes
         Delete a joke
         DELETE /api/jokes/:id</br>
         </code>
+        Retrieve all jokes by a user with the specified userId:
+        <code>GET <a href="http://localhost:3000/api/jokes?userId={VALUE}" target="_blank">/api/jokes?userId={VALUE}</a></code>
+        <hr>
+        GET <code><a href="http://localhost:3000/api/comments">/comments</a></code> <br>
+        POST /comments <br>
+        <code>GET <a href="http://localhost:3000/api/comments/:id" target="_blank">/api/comments/:id</a></code></br>
+        Update a comment: 
+        PATCH /api/comments/:id</br>
+        Delete a comment
+        DELETE /api/comments/:id</br>
 
 Thank you for your time. I hope these jokes bring a smile to your face!

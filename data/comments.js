@@ -5,7 +5,7 @@ const comments = [
         id: 1,
         userId: 1,
         jokeId: 2,
-        comment:"this was truelly funny"
+        body:"this was truelly funny"
     }
 ];
 

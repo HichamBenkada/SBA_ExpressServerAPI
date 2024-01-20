@@ -19,10 +19,13 @@ router
         type: "GET",
       },
     ];
-    if(req.query){
+    if(req.query.userId){
       const userjokes = jokes.filter((j)=>j.userId===Number(req.query.userId));
       res.json({ userjokes , links })
-    }else res.json({ jokes, links });
+    }
+    else{
+      res.json({ jokes, links })
+    };
   })
   .post((req, res, next) => {
     if (req.body.userId && req.body.tag && req.body.joke) {
@@ -41,7 +44,7 @@ router
 router
   .route("/:id")
   .get((req, res, next) => {
-    const post = jokes.find((p) => p.id == req.params.id);
+    const joke = jokes.find((p) => p.id == req.params.id);
 
     const links = [
       {
@@ -56,7 +59,7 @@ router
       },
     ];
 
-    if (post) res.json({ post, links });
+    if (joke) res.json({ joke, links });
     else next();
   })
   .patch((req, res, next) => {
@@ -69,7 +72,7 @@ router
       }
     });
 
-    if (post) res.json(post);
+    if (joke) res.json(joke);
     else next();
   })
   .delete((req, res, next) => {
@@ -80,7 +83,7 @@ router
       }
     });
 
-    if (joke) res.json("Success! A joke has been deleted:", joke);
+    if (joke) res.json(joke);
     else next();
   });
 

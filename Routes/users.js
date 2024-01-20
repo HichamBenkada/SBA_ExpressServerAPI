@@ -67,7 +67,7 @@ router
       }
     });
 
-    if (user) res.send("User is successfully updated!", user);
+    if (user) res.send(user);
     else next();
   })
   .delete((req, res, next) => {

@@ -15,7 +15,6 @@ router
         type: "GET",
       },
     ];
-
     res.json({ comments, links });
   })
   .post((req, res, next) => {
@@ -35,7 +34,7 @@ router
 router
   .route("/:id")
   .get((req, res, next) => {
-    const post = jokes.find((p) => p.id == req.params.id);
+    const comment = comments.find((c) => c.id == req.params.id);
 
     const links = [
       {
@@ -50,36 +49,36 @@ router
       },
     ];
 
-    if (post) res.json({ post, links });
+    if (comment) res.json({ comment, links });
     else next();
   })
   .patch((req, res, next) => {
-    const joke = jokes.find((p, i) => {
+    const comment = comments.find((p, i) => {
       if (p.id == Number(req.params.id)) {
         for (const key in req.body) {
-          jokes[i][key] = req.body[key];
+          comments[i][key] = req.body[key];
         }
         return true;
       }
     });
 
-    if (post) res.json(post);
+    if (comment) res.json(comment);
     else next();
   })
   .delete((req, res, next) => {
-    const joke = jokes.find((p, i) => {
+    const comment = comments.find((p, i) => {
       if (p.id == req.params.id) {
-        jokes.splice(i, 1);
+        comments.splice(i, 1);
         return true;
       }
     });
 
-    if (joke) res.json("Success! A joke has been deleted:", joke);
+    if (comment) res.json(comment);
     else next();
   });
 
 //----------------
-//possting new joke using a form:
+//possting new comment using a form:
 router.route("/new")
 .get((req, res) => {
   res.send(`<style>
@@ -93,7 +92,7 @@ router.route("/new")
   padding: 10px;
   width:50%;
   background-color:rgb(0 0 255 / 10%);
-  border-radius: 10px;">Submitting a joke: 
+  border-radius: 10px;">Submitting a comment: 
   <form action='/api/comments' method="POST" style="display: flex; flex-direction:column; justify-content:space-around">
   </br>
   userId: <input type="text" name="userId" required/> 
