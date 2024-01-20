@@ -10,31 +10,32 @@ For this project, I developed a _RESTful API_ server application using Node and 
 
 Welcome to Joke Api: Feel free to explore all routes
 
-Home page: 
-    - GET /
-Access API route: 
-    - GET /api
-Explore (Read) users: 
-    - GET /api/users
-Create a user: 
-    - POST /api/users
-Get user by id: 
-        - GET /api/users/:id
-Update user by id: 
-        - PATCH /api/users/:id
-Delete user by id: 
-        - DELETE /api/users/:id
-
-
-Explore (Read) Jokes: 
-    - GET /api/jokes
-Create a joke: 
-    - POST /api/jokes
-Read a joke by id: 
-        - GET /api/jokes/:id
-Update a joke: 
-        - PATCH /api/jokes/:id
-Delete a joke 
-        - DELETE /api/jokes/:id
+ Home page: 
+        <code>GET <a href="http://localhost:3000">/</a></code></br>
+        Access API route: 
+        <code>GET <a href="http://localhost:3000/api" target="_blank">/api</a></code></br>
+        <hr>
+        Explore (Read) users: 
+        <code>GET <a href="http://localhost:3000/api/users" target="_blank">/api/users</a></code></br>
+        Create a user: 
+        POST /api/users</br>
+        Get user by id: 
+        <code>GET <a href="http://localhost:3000/api/users/:id" target="_blank">/api/users/:id</a></code></br>
+        Update user by id: 
+        PATCH /api/users/:id</br>
+        Delete user by id: 
+        DELETE /api/users/:id</br>
+        <hr>
+        Explore (Read) Jokes: 
+        <code>GET <a href="http://localhost:3000/api/jokes" target="_blank">/api/jokes</a></code></br>
+        Create a joke: 
+        POST /api/jokes</br>
+        Read a joke by id: 
+        <code>GET <a href="http://localhost:3000/api/jokes/:id" target="_blank">/api/jokes/:id</a></code></br>
+        Update a joke: 
+        PATCH /api/jokes/:id</br>
+        Delete a joke
+        DELETE /api/jokes/:id</br>
+        </code>
 
 Thank you for your time. I hope these jokes bring a smile to your face!
