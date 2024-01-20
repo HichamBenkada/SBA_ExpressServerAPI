@@ -31,7 +31,7 @@ router
       };
 
       users.push(user);
-      res.json('Success! use is created: ', users[users.length - 1]);
+      res.send('Success!',user);
     } else next(error(400, 'Insufficient Data'));
   });
 
@@ -79,6 +79,10 @@ router
 
     if (user) res.send('User has successfully deleted! ',user);
     else next();
+  });
+
+  router.get('/login', (res,req)=>{
+    res.render('login')
   });
 
 module.exports = router;

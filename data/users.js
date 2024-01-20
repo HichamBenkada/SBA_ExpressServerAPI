@@ -27,12 +27,6 @@ const users = [
       username: 'HicBen',
       email: 'Hesham123@example.com',
     },
-    {
-      id: 5,
-      name: 'hichamB',
-      username: 'BenBen',
-      email: 'HichBen@example.com',
-    },
   ];
   
   module.exports = users;

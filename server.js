@@ -1,20 +1,18 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-//_--_---__----____-----
-
 //Routes:
 const jokes = require('./routes/jokes');
 const users = require('./routes/users');
+//_--_---__----____-----
+//Setting EJS as view engine:
+app.set('view engine', 'ejs');
+
+//static Style:
+app.use(express.static('./styles'));
 
 //error handler
 const error = require('./utilities/error');
-
-//view engine:
-app.set('view engine','ejs');
-
-//static styles
-app.use(express.static('./styles'));
 
 //Parsing middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -70,7 +68,7 @@ app.get('/api', (req, res) => {
   });
 });
 
-// Custom 404 (not found) middleware.
+// Custom 404 middleware.
 app.use((req , res , next)=>{
     res.status(404).render('404')
 })

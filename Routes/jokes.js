@@ -1,24 +1,24 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const jokes = require('../data/jokes');
-const error = require('../utilities/error');
+const jokes = require("../data/jokes");
+const error = require("../utilities/error");
 
 router
-  .route('/')
+  .route("/")
   .get((req, res) => {
     const links = [
       {
-        href: 'jokes/:id',
-        rel: ':id',
-        type: 'GET',
+        href: "jokes/:id",
+        rel: ":id",
+        type: "GET",
       },
     ];
 
     res.json({ jokes, links });
   })
   .post((req, res, next) => {
-    if (req.body.userId && req.body.title && req.body.content) {
+    if (req.body.userId && req.body.tag && req.body.joke) {
       const joke = {
         id: jokes[jokes.length - 1].id + 1,
         userId: req.body.userId,
@@ -27,25 +27,25 @@ router
       };
 
       jokes.push(joke);
-      res.json('Success! a joke post is created:',jokes[jokes.length - 1]);
-    } else next(error(400, 'Insufficient Data'));
+      res.json(jokes[jokes.length - 1]);
+    } else next(error(400, "Insufficient Data"));
   });
 
 router
-  .route('/:id')
+  .route("/:id")
   .get((req, res, next) => {
     const post = jokes.find((p) => p.id == req.params.id);
 
     const links = [
       {
         href: `/${req.params.id}`,
-        rel: '',
-        type: 'PATCH',
+        rel: "",
+        type: "PATCH",
       },
       {
         href: `/${req.params.id}`,
-        rel: '',
-        type: 'DELETE',
+        rel: "",
+        type: "DELETE",
       },
     ];
 
@@ -73,8 +73,35 @@ router
       }
     });
 
-    if (joke) res.json("Success! A joke has been deleted:",joke);
+    if (joke) res.json("Success! A joke has been deleted:", joke);
     else next();
   });
+
+//----------------
+//possting new joke using a form:
+router.route("/new")
+.get((req, res) => {
+  res.send(`<style>
+  body{
+    display:flex;
+    justify-content:center;
+    algne-items:center;
+  }
+  </style>
+  <div style="margin:auto;
+  padding: 10px;
+  width:50%;
+  background-color:rgb(0 0 255 / 10%);
+  border-radius: 10px;">Submitting a joke: 
+  <form action='/api/jokes' method="POST" style="display: flex; flex-direction:column; justify-content:space-around">
+  </br>
+  userId: <input type="text" name="userId" required/> 
+    Tag: <input type="text" name="tag" required/> 
+    joke: <textarea id="joke" name="joke" row="4" col="4" required></textarea>
+    <br />
+    <input type="submit" />
+  </form>
+</div>`);
+})
 
 module.exports = router;

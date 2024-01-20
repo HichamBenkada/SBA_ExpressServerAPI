@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jokes-API | Home</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <%- include('./partials/header.html') %>
+
+    <div id="content">
+      <form action='/jokes' method="POST">
+        Tag: <input type="text" name="tag" /> <br />
+        joke: <input type="textarea" name="joke" /> <br />
+        <input type="submit" />
+      </form>
+    </div>
+
+    <%- include('./partials/footer.html') %>
+   
+  </body>
+</html>

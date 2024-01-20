@@ -5,17 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Jokes-API | Home</title>
     <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
     <%- include('./partials/header.html') %>
     
     <div id="content">
         <h3>Welcome to Joke Api</h3>
-        <code>Feel free to explore it...</code>
+        Home page: 
+        <code>GET <a href="http://localhost:3000">/</a></code></br>
+        Access API route: 
+        <code>GET <a href="http://localhost:3000/api" target="_blank">/api</a></code></br>
+        Explore (Read) users: 
+        <code>GET <a href="http://localhost:3000/api/users" target="_blank">/api/users</a></code></br>
+        Create a user: 
+        POST /api/users</br>
+        Get user by id: 
+        <code>GET <a href="http://localhost:3000/api/users/:id" target="_blank">/api/users/:id</a></code></br>
+        Update user by id: 
+        PATCH /api/users/:id</br>
+        Delete user by id: 
+        DELETE /api/users/:id</br>
+        Read Jokes: 
+        <code>GET <a href="http://localhost:3000/api/jokes" target="_blank">/api/jokes</a></code></br>
+        Create a joke: 
+        POST /api/jokes</br>
+        Read a joke by id: 
+        <code>GET <a href="http://localhost:3000/api/jokes/:id" target="_blank">/api/jokes/:id</a></code></br>
+        Update a joke: 
+        PATCH /api/jokes/:id</br>
+        Delete a joke
+        DELETE /api/jokes/:id</br>
+        </code>
         <p>Hope these bring a smile to your face! </p>
      </div>
     
     <%- include('./partials/footer.html') %>
-    <script src="../server.js"></script>
+    
 </body>
 </html>
